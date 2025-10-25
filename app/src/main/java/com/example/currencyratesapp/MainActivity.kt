@@ -77,6 +77,19 @@ class MainActivity : AppCompatActivity() {
             mutableListOf<String>()
         )
         listViewCurrencies.adapter = currencyAdapter
+
+        // Add click listener to show currency details
+        listViewCurrencies.setOnItemClickListener { _, _, position, _ ->
+            val clickedCurrency = if (filteredCurrencyRates.isEmpty()) {
+                if (position < allCurrencyRates.size) allCurrencyRates[position] else null
+            } else {
+                if (position < filteredCurrencyRates.size) filteredCurrencyRates[position] else null
+            }
+
+            clickedCurrency?.let {
+                showCurrencyDetails(it)
+            }
+        }
     }
 
     /**
@@ -101,6 +114,27 @@ class MainActivity : AppCompatActivity() {
         btnRefresh.setOnClickListener {
             loadCurrencyData()
         }
+    }
+
+    /**
+     * Show detailed information about a currency
+     */
+    private fun showCurrencyDetails(currency: CurrencyRate) {
+        // Create detailed message
+        val details = StringBuilder()
+        details.append("Currency: ${currency.currencyCode}\n")
+        details.append("Name: ${currency.currencyName}\n")
+        details.append("Exchange Rate: %.4f\n".format(currency.exchangeRate))
+        details.append("\nThis means:\n")
+        details.append("1 USD = %.4f ${currency.currencyCode}\n".format(currency.exchangeRate))
+        details.append("1 ${currency.currencyCode} = %.4f USD".format(1.0 / currency.exchangeRate))
+
+        // Show in an AlertDialog for better presentation
+        android.app.AlertDialog.Builder(this)
+            .setTitle(currency.currencyCode)
+            .setMessage(details.toString())
+            .setPositiveButton("OK", null)
+            .show()
     }
 
     /**

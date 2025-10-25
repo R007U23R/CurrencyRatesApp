@@ -23,23 +23,30 @@
         android:id="@+id/editTextFilter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:hint="@string/search_hint"
         android:inputType="textCapCharacters"
         android:maxLength="3"
         android:padding="12dp"
         android:background="@android:drawable/edit_text" />
 
-    <!-- ListView to display currency rates -->
+    <!-- ListView with proper weight for scrolling -->
     <ListView
         android:id="@+id/listViewCurrencies"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:divider="#E0E0E0"
-        android:dividerHeight="1dp" />
+        android:dividerHeight="1dp"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="false"
+        android:scrollbarStyle="outsideOverlay"
+        android:padding="8dp" />
 
-    <!-- Loading indicator -->
+    <!-- Loading indicator (overlays the list) -->
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
@@ -47,7 +54,7 @@
         android:layout_gravity="center"
         android:visibility="gone" />
 
-    <!-- Error message -->
+    <!-- Error message (hidden by default) -->
     <TextView
         android:id="@+id/txtError"
         android:layout_width="match_parent"
@@ -59,12 +66,15 @@
         android:textSize="16sp"
         android:visibility="gone" />
 
-    <!-- Refresh button -->
+    <!-- Refresh button at bottom -->
     <Button
         android:id="@+id/btnRefresh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/refresh"
         android:backgroundTint="#4CAF50" />
 
