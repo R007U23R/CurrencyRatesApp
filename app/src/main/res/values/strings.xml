@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Currency Rates App</string>
+    <string name="loading">Loading currency rates...</string>
+    <string name="error_loading">Failed to load rates. Check internet connection.</string>
+    <string name="search_hint">Filter currency (e.g., EUR)</string>
+    <string name="refresh">Refresh</string>
+    <string name="base_currency">Base: USD</string>
+</resources>
